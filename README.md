@@ -2,11 +2,11 @@
 
 Este paquete implementa la arquitectura lineal:
 
-\[
-\mathrm{Alice}_{TX}\longrightarrow
-\mathrm{Bob}_{transparente}\longrightarrow
-\mathrm{Alice}_{RX}.
-\]
+$$
+\mathrm{Alice}_{\mathrm{TX}}\longrightarrow
+\mathrm{Bob}_{\mathrm{transparente}}\longrightarrow
+\mathrm{Alice}_{\mathrm{RX}}.
+$$
 
 Bob no refleja, no mide y no regenera el pulso. Selecciona un bit y una base
 BB84, modifica la polarización del mismo pulso que recibe y lo reenvía por su
@@ -32,22 +32,22 @@ Matplotlib 3.10.8 y SeQUeNCe 1.0.0.
 
 Bob selecciona aleatoriamente:
 
-- base \(Z\): \(H\) o \(V\);
-- base \(X\): \(D\) o \(A\).
+- base $Z$: $H$ o $V$;
+- base $X$: $D$ o $A$.
 
 La eficiencia señal-detector es
 
-\[
+$$
 \eta_{\mathrm{tot}}=
 10^{-(L_{AB}+L_B+L_{BA})/10}\eta_D.
-\]
+$$
 
-Para una fuente coherente débil con número medio de fotones \(\mu\), la
+Para una fuente coherente débil con número medio de fotones $\mu$, la
 probabilidad de al menos un clic producido por la señal es
 
-\[
+$$
 p_{\mathrm{sig}}=1-\exp(-\mu\eta_{\mathrm{tot}}).
-\]
+$$
 
 Se simulan dos detectores umbral. Los dobles clics se asignan aleatoriamente,
 y las cuentas oscuras se introducen como una probabilidad por detector y por
@@ -89,9 +89,9 @@ python loopback_qkd.py \
   --attack-fraction 1
 ```
 
-En condiciones ideales, el resultado esperado es QBER \(=0\). Con
+En condiciones ideales, el resultado esperado es QBER $=0$. Con
 interceptación y reenvío completos, el QBER esperado es aproximadamente
-\(25\%\).
+$25\%$.
 
 ## Demostración con SeQUeNCe
 
@@ -140,7 +140,7 @@ lógica del protocolo no se modifican.
 
 | `--actuator`          | Qué hace                                                       | Uso                    |
 | ----------------------- | --------------------------------------------------------------- | ---------------------- |
-| `ideal` (por defecto) | Kinesis**no** se usa; sin tiempos                         | Validación y barridos |
+| `ideal` (por defecto) | Kinesis **no** se usa; sin tiempos                         | Validación y barridos |
 | `kinesis`             | Mueve el K10CR2 y el MFF101 vía Kinesis; rondas en tiempo real | Medir tiempos (lento)  |
 
 En modo `ideal` los resultados son **idénticos** a la versión original (lo
@@ -174,10 +174,10 @@ python sequence_loopback.py --key-bits 128 --actuator kinesis --attack-fraction 
 
 1. Bob hace *home* de la Placa 2 y pone el espejo MFF101 en el haz.
 2. Alice envía el preámbulo (patrón de pulsos, por defecto a 0; 0,10 y
-   0,25 s). El fotodiodo de Bob lo reconoce y fija la referencia \(t_{ref}\).
+   0,25 s). El fotodiodo de Bob lo reconoce y fija la referencia $t_{\mathrm{ref}}$.
 3. Bob quita el espejo y lo desconecta (si queda conectado, sus consultas
    frenan al K10CR2).
-4. Las rondas empiezan en \(t_{ref} + T_{inicio}\) (5 s, acordado de
+4. Las rondas empiezan en $t_{\mathrm{ref}} + T_{\mathrm{inicio}}$ (5 s, acordado de
    antemano). Cada ronda dura un plazo fijo: Bob gira (o no) la Placa 2 al
    inicio y Alice dispara al final.
 5. Si el motor no termina dentro del plazo se muestra `[AVISO] ATRASADO`.
@@ -190,7 +190,7 @@ Mapeo de Bob: base 0 → Placa 2 a +11,25°; base 1 → Placa 2 a −11,25°
 | Opción                    | Por defecto    | Descripción                                            |
 | -------------------------- | -------------- | ------------------------------------------------------- |
 | `--round-period-s`       | 3.0            | Duración fija de cada ronda                            |
-| `--start-delay-s`        | 5.0            | \(T_{inicio}\): espera entre el preámbulo y la ronda 1 |
+| `--start-delay-s`        | 5.0            | $T_{\mathrm{inicio}}$: espera entre el preámbulo y la ronda 1 |
 | `--preamble-pattern`     | `0,0.1,0.25` | Tiempos del patrón del preámbulo (s)                  |
 | `--photodiode-latency-s` | 0.001          | Latencia del fotodiodo simulado                         |
 | `--mirror-serial`        | `37000001`   | Serie del MFF101                                        |
